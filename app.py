@@ -18,7 +18,7 @@ if st.button("Generar Conceptos"):
     else:
         try:
             # CAMBIO: Usaremos 'gemini-1.5-flash' por ser más estable para respuestas rápidas
-            model = genai.GenerativeModel('gemini-1.5-flash') 
+            model = genai.GenerativeModel('gemini-1.5-flash-latest') 
             prompt = f"Actúa como mi Director de Arte. Genera 4 conceptos de miniatura para {menu} sobre: {tema}. Sigue mi estilo de alto impacto y tensión visual."
             
             with st.spinner('Procesando...'):
