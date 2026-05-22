@@ -1,0 +1,2 @@
+# nico-damore-os
+nicothumbnail
