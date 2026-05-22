@@ -3,7 +3,7 @@ import google.generativeai as genai
 import os
 
 # Configuración
-api_key = AIzaSyASV32UU7chcBClu3gQODiqCgHhMxi2wtE # REVISÁ QUE ESTÉ TU CÓDIGO AQUÍ
+api_key = "AIzaSyASV32UU7chcBClu3gQODiqCgHhMxi2wtE" # REVISÁ QUE ESTÉ TU CÓDIGO AQUÍ
 genai.configure(api_key=api_key)
 
 st.set_page_config(page_title="NICO DAMORE | OS", layout="wide")
