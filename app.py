@@ -1,9 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
-import os
 
 # Configuración
-api_key = "AIzaSyASV32UU7chcBClu3gQODiqCgHhMxi2wtE" # REVISÁ QUE ESTÉ TU CÓDIGO AQUÍ
+api_key = st.secrets["AIzaSyASV32UU7chcBClu3gQODiqCgHhMxi2wtE"]
 genai.configure(api_key=api_key)
 
 st.set_page_config(page_title="NICO DAMORE | OS", layout="wide")
@@ -14,15 +13,15 @@ tema = st.text_area("¿De qué trata la miniatura?")
 
 if st.button("Generar Conceptos"):
     if not tema:
-        st.warning("Escribí el tema.")
+        st.warning("Escribí el tema primero.")
     else:
         try:
-            # CAMBIO: Usaremos 'gemini-1.5-flash' por ser más estable para respuestas rápidas
-            model = genai.GenerativeModel('gemini-pro')
-            prompt = f"Actúa como mi Director de Arte. Genera 4 conceptos de miniatura para {menu} sobre: {tema}. Sigue mi estilo de alto impacto y tensión visual."
+            # Usamos el alias 'gemini-1.5-flash' sin sufijos complicados
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            prompt = f"Actúa como Director de Arte. Genera 4 conceptos de miniatura para {menu} sobre: {tema}. Estilo: Tensión visual, urgencia periodística, alto impacto."
             
             with st.spinner('Procesando...'):
                 response = model.generate_content(prompt)
-                st.markdown(response.text)
+                st.write(response.text)
         except Exception as e:
             st.error(f"Error técnico: {e}")
