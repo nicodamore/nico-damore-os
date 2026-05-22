@@ -1,27 +1,28 @@
 import streamlit as st
 import google.generativeai as genai
+import os
 
-# Configuración de la API
-api_key = 'AIzaSyASV32UU7chcBClu3gQODiqCgHhMxi2wtE' 
+# Configuración
+api_key = AIzaSyASV32UU7chcBClu3gQODiqCgHhMxi2wtE # REVISÁ QUE ESTÉ TU CÓDIGO AQUÍ
 genai.configure(api_key=api_key)
 
 st.set_page_config(page_title="NICO DAMORE | OS", layout="wide")
 st.title("🖥️ NICO DAMORE | DASHBOARD OPERATIVO")
 
-# Selección de Proyecto
 menu = st.sidebar.selectbox("Selecciona Proyecto", ["EDUL", "SOFI", "SURREAL"])
-
-# Área de Trabajo
-st.header(f"Módulo: {menu}")
 tema = st.text_area("¿De qué trata la miniatura?")
 
 if st.button("Generar Conceptos"):
     if not tema:
-        st.warning("Por favor, describí el tema de la miniatura.")
+        st.warning("Escribí el tema.")
     else:
-        model = genai.GenerativeModel('gemini-1.5-pro')
-        prompt = f"Actúa como mi Director de Arte. Genera 4 conceptos de miniatura para {menu} sobre: {tema}. Sigue mi estilo de alto impacto y tensión visual."
-        
-        with st.spinner('Nico Damore OS procesando...'):
-            response = model.generate_content(prompt)
-            st.markdown(response.text)
+        try:
+            # CAMBIO: Usaremos 'gemini-1.5-flash' por ser más estable para respuestas rápidas
+            model = genai.GenerativeModel('gemini-1.5-flash') 
+            prompt = f"Actúa como mi Director de Arte. Genera 4 conceptos de miniatura para {menu} sobre: {tema}. Sigue mi estilo de alto impacto y tensión visual."
+            
+            with st.spinner('Procesando...'):
+                response = model.generate_content(prompt)
+                st.markdown(response.text)
+        except Exception as e:
+            st.error(f"Error técnico: {e}")
