@@ -16,7 +16,7 @@ if st.button("Generar Conceptos"):
         st.warning("Escribí el tema primero.")
     else:
         try:
-            model = genai.GenerativeModel('gemini-1.5-flash')
+           model = genai.GenerativeModel('gemini-1.5-pro-latest')
             prompt = f"Actúa como Director de Arte. Genera 4 conceptos de miniatura para {menu} sobre: {tema}. Estilo: Tensión visual, urgencia periodística, alto impacto."
             
             with st.spinner('Procesando...'):
